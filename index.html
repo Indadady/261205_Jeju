@@ -168,7 +168,6 @@
                     <a href="#weather-esg" class="px-3 py-2 text-sm font-medium text-slate-600 hover:text-indigo-600 hover:bg-slate-50 rounded-lg">날씨&ESG</a>
                 </div>
             </div>
-            <button type="button" onclick="window.print()" class="shrink-0 hidden md:inline-flex items-center gap-1.5 bg-slate-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold hover:bg-slate-700 ml-2"><i class="fa-solid fa-print"></i> 일정표 인쇄하기</button>
             <button type="button" onclick="shareLink()" class="shrink-0 p-2 text-slate-500 hover:text-indigo-600 ml-1"><i class="fa-solid fa-share-nodes text-xl"></i></button>
         </nav>
     </header>
@@ -304,10 +303,12 @@
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="text-center mb-10">
-                    <h2 class="text-2xl md:text-3xl font-bold font-title">세부 일정</h2>
+                    <div class="flex flex-wrap items-center justify-center gap-3 mb-2">
+                        <h2 class="text-2xl md:text-3xl font-bold font-title">세부 일정</h2>
+                        <button type="button" onclick="window.print()" class="inline-flex items-center gap-1.5 bg-slate-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-md hover:bg-slate-700"><i class="fa-solid fa-print"></i> 일정표 인쇄하기</button>
+                    </div>
                     <p class="text-slate-500 text-sm mt-2">탭을 눌러 일자별 상세 내용을 확인하세요.</p>
                     <p class="text-xs text-red-500 mt-2 font-bold bg-red-50 inline-block px-3 py-1 rounded-full shadow-sm"><i class="fa-solid fa-circle-exclamation"></i> 상기 상세 일정은 항공 및 현지 사정에 의해 변동될 수 있습니다.</p>
-                    <button type="button" onclick="window.print()" class="md:hidden mt-4 bg-slate-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-md"><i class="fa-solid fa-print"></i> 일정표 인쇄하기</button>
                 </div>
                 <div class="flex overflow-x-auto no-scrollbar gap-2 mb-8 justify-start md:justify-center px-2">
                     <button class="tab-btn active shrink-0 px-5 py-3 rounded-2xl border-2 border-indigo-600 bg-indigo-600 text-white font-bold text-sm transition" onclick="openTab(event, 'day1')">1일차 (11/7 토)</button>
@@ -500,21 +501,21 @@
                 <p class="text-slate-500 text-sm mt-2">아시아호텔 또는 동급호텔에서 2박합니다. (2인실)</p>
             </div>
             <div class="max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md">
-                <img src="assets/images/hotel.jpg" alt="제주 숙소 객실 예시" class="w-full h-64 md:h-80 object-cover">
+                <img src="assets/images/hotel.jpg" alt="제주 아시아호텔 외관" class="w-full h-64 md:h-80 object-cover object-center">
                 <div class="p-6 md:p-8 grid md:grid-cols-2 gap-6">
                     <div>
                         <h3 class="text-xl font-bold text-slate-800 font-title mb-2">아시아호텔 또는 동급호텔</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">제주 시내권 · 15명 기준 2인실<br>현장 사정에 따라 동급 호텔로 안내될 수 있습니다.</p>
+                        <p class="text-sm text-slate-600 leading-relaxed">제주특별자치도 제주시 노연로 53<br>15명 기준 2인실 · 현장 사정에 따라 동급 호텔로 안내될 수 있습니다.</p>
                         <ul class="mt-4 text-sm text-slate-600 space-y-1.5">
-                            <li><i class="fa-solid fa-clock text-indigo-500 w-4"></i> 체크인·체크아웃은 숙소 안내에 따릅니다</li>
+                            <li><i class="fa-solid fa-clock text-indigo-500 w-4"></i> 체크인 15:00 · 체크아웃 11:00</li>
                             <li><i class="fa-solid fa-wifi text-indigo-500 w-4"></i> 객실 Wi-Fi · 기본 어메니티</li>
-                            <li><i class="fa-solid fa-bed text-indigo-500 w-4"></i> 2인실 기준</li>
-                            <li><i class="fa-solid fa-location-dot text-indigo-500 w-4"></i> 제주 시내 · 관광 동선 연계</li>
+                            <li><i class="fa-solid fa-phone text-indigo-500 w-4"></i> 064-798-0881</li>
+                            <li><i class="fa-solid fa-location-dot text-indigo-500 w-4"></i> 제주시 노형 · 공항·시내 연계</li>
                         </ul>
                     </div>
                     <div class="flex flex-col justify-center gap-3">
                         <a href="https://map.naver.com/p/search/%EC%A0%9C%EC%A3%BC%20%EC%95%84%EC%8B%9C%EC%95%84%ED%98%B8%ED%85%94" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-indigo-600 text-white font-bold px-4 py-3 rounded-xl hover:bg-indigo-700">숙소 위치 지도 보기</a>
-                        <p class="text-xs text-slate-500 text-center leading-relaxed">정확한 숙소명은 출발 전 안내 문자를 확인해 주세요.</p>
+                        <p class="text-xs text-slate-500 text-center leading-relaxed">사진은 아시아호텔 참고용이며, 동급 호텔로 안내될 수 있습니다.</p>
                     </div>
                 </div>
             </div>
@@ -1007,7 +1008,7 @@
             jejuAirport: { coords: [33.5070, 126.4930], title: '제주공항', color: '#1e293b', icon: '✈️' },
             skywater: { coords: [33.4382, 126.7758], title: '스카이워터쇼', color: '#0ea5e9', icon: '💧' },
             ecoland: { coords: [33.4558, 126.6680], title: '에코랜드', color: '#16a34a', icon: '🚂' },
-            hotel: { coords: [33.4890, 126.4885], title: '아시아호텔', color: '#0f766e', icon: '🏨' },
+            hotel: { coords: [33.4859, 126.4897], title: '아시아호텔', color: '#0f766e', icon: '🏨' },
             tangerine: { coords: [33.2685, 126.5750], title: '감귤따기', color: '#f59e0b', icon: '🍊' },
             cheonjiyeon: { coords: [33.2447, 126.5595], title: '천지연폭포', color: '#06b6d4', icon: '🌊' },
             sanbang: { coords: [33.2378, 126.3130], title: '산방산유람선', color: '#3b82f6', icon: '⛴️' },
@@ -1066,11 +1067,32 @@
                 iconAnchor: [48, 16]
             });
         }
-        function vehicleIcon(emoji, heading, zeroDeg) {
-            const rot = ((heading - zeroDeg) % 360 + 360) % 360;
+        // 🚌 기본 기수 ≈ 동쪽(90°), ✈️ 기본 기수 ≈ 북동(45°)
+        // 버스는 옆모습이라 180° 회전 시 뒤집혀 보이므로, |회전|>90이면 좌우반전으로 보정
+        function vehicleOrientation(heading, kind) {
+            const zeroDeg = kind === 'air' ? 45 : 90;
+            let angle = ((heading - zeroDeg) % 360 + 360) % 360;
+            if (angle > 180) angle -= 360;
+            if (kind === 'air') {
+                return { rot: ((heading - zeroDeg) % 360 + 360) % 360, flip: false, zeroDeg };
+            }
+            let flip = false;
+            if (Math.abs(angle) > 90) {
+                flip = true;
+                angle += angle > 0 ? -180 : 180;
+            }
+            return { rot: angle, flip, zeroDeg };
+        }
+        function vehicleTransformCss(orient) {
+            return orient.flip
+                ? `scaleX(-1) rotate(${orient.rot}deg)`
+                : `rotate(${orient.rot}deg)`;
+        }
+        function vehicleIcon(emoji, heading, kind) {
+            const orient = vehicleOrientation(heading, kind || (emoji === '✈️' ? 'air' : 'drive'));
             return L.divIcon({
                 className: 'custom-icon',
-                html: `<div class="map-bus" data-zero="${zeroDeg}" style="transform:rotate(${rot}deg)">${emoji}</div>`,
+                html: `<div class="map-bus" data-kind="${kind || 'drive'}" data-zero="${orient.zeroDeg}" style="transform:${vehicleTransformCss(orient)}">${emoji}</div>`,
                 iconSize: [28, 28],
                 iconAnchor: [14, 14]
             });
@@ -1082,6 +1104,13 @@
             const y = Math.sin(dLng) * Math.cos(lat2);
             const x = Math.cos(lat1) * Math.sin(lat2) - Math.sin(lat1) * Math.cos(lat2) * Math.cos(dLng);
             return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+        }
+        function applyVehicleHeading(marker, heading) {
+            const el = marker?.getElement()?.querySelector('.map-bus');
+            if (!el) return;
+            const kind = el.dataset.kind || (marker._vehicleKind || 'drive');
+            const orient = vehicleOrientation(heading, kind);
+            el.style.transform = vehicleTransformCss(orient);
         }
         function clearMapLayers() {
             if (activeBus) activeBus._aborted = true;
@@ -1154,7 +1183,6 @@
                 if (total === 0) { resolve(); return; }
                 const start = performance.now();
                 const ease = t => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
-                const zeroDeg = marker._zeroDeg || 90;
                 function frame(now) {
                     if (marker._aborted) { resolve(); return; }
                     const t = Math.min(1, (now - start) / duration);
@@ -1166,9 +1194,7 @@
                     const span = (dists[i] - dists[i - 1]) || 1;
                     const f = (target - dists[i - 1]) / span;
                     marker.setLatLng([a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f]);
-                    const heading = bearingDeg(a, b);
-                    const el = marker.getElement()?.querySelector('.map-bus');
-                    if (el) el.style.transform = `rotate(${((heading - zeroDeg) % 360 + 360) % 360}deg)`;
+                    applyVehicleHeading(marker, bearingDeg(a, b));
                     if (t < 1) requestAnimationFrame(frame);
                     else resolve();
                 }
@@ -1242,12 +1268,13 @@
             addPin(legs[0].from);
             const firstHeading = bearingDeg(spots[legs[0].from].coords, spots[legs[0].to].coords);
             const firstAir = legs[0].mode === 'air';
+            const firstKind = firstAir ? 'air' : 'drive';
             const bus = L.marker(spots[legs[0].from].coords, {
-                icon: vehicleIcon(firstAir ? '✈️' : '🚌', firstHeading, firstAir ? 45 : 90),
+                icon: vehicleIcon(firstAir ? '✈️' : '🚌', firstHeading, firstKind),
                 zIndexOffset: 900
             }).addTo(currentMap);
             bus._aborted = false;
-            bus._zeroDeg = firstAir ? 45 : 90;
+            bus._vehicleKind = firstKind;
             activeBus = bus;
             mapLayers.push(bus);
             let onJejuView = !(hasAir && legs[0].mode === 'air');
@@ -1256,7 +1283,7 @@
                 const leg = legs[i];
                 const path = paths[i];
                 const isAir = leg.mode === 'air';
-                const zero = isAir ? 45 : 90;
+                const kind = isAir ? 'air' : 'drive';
                 const emoji = isAir ? '✈️' : '🚌';
                 // 귀국 항공 직전: 다시 원주↔제주 광역으로
                 if (isAir && leg.from === 'jejuAirport' && leg.to === 'wonjuAirport') {
@@ -1272,9 +1299,11 @@
                     if (seq !== mapDrawSeq) return;
                     onJejuView = true;
                 }
-                if (bus._zeroDeg !== zero) {
-                    bus._zeroDeg = zero;
-                    bus.setIcon(vehicleIcon(emoji, bearingDeg(spots[leg.from].coords, spots[leg.to].coords), zero));
+                if (bus._vehicleKind !== kind) {
+                    bus._vehicleKind = kind;
+                    bus.setIcon(vehicleIcon(emoji, bearingDeg(spots[leg.from].coords, spots[leg.to].coords), kind));
+                } else {
+                    applyVehicleHeading(bus, bearingDeg(spots[leg.from].coords, spots[leg.to].coords));
                 }
                 setMapStatus(`${spots[leg.from].title} → ${spots[leg.to].title}`);
                 const poly = L.polyline(path, {
