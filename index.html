@@ -11,9 +11,9 @@
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>박준영님 일행 제주 여행 - 스마트 가이드</title>
-    <meta name="description" content="박준영님 일행 제주 2박 3일 관광 일정 안내 · 일반 성인단체 15명">
-    <meta property="og:title" content="박준영님 일행 제주 가이드북">
+    <title>제주 2박 3일 여행 - 스마트 가이드</title>
+    <meta name="description" content="제주 2박 3일 관광 일정 안내 · 일반 성인단체 15명">
+    <meta property="og:title" content="제주 여행 스마트 가이드북">
     <meta property="og:description" content="2026.11.07~11.09 · 원주 ↔ 제주 · 일반 성인단체 관광 2박 3일">
     <meta property="og:image" content="https://indadady.github.io/261205_Jeju/assets/images/og-thumb.jpg">
     <meta property="og:image:width" content="1920">
@@ -187,7 +187,7 @@
 
     <section id="home" class="hero-bg min-h-[60vh] flex items-center justify-center text-center px-4">
         <div class="animate-fade-in-up text-white">
-            <span class="bg-indigo-600/90 px-6 py-2 rounded-full text-lg md:text-xl font-bold mb-6 inline-block border border-white/20 shadow-lg font-title tracking-wide">박준영님 일행</span>
+            <span class="bg-indigo-600/90 px-6 py-2 rounded-full text-lg md:text-xl font-bold mb-6 inline-block border border-white/20 shadow-lg font-title tracking-wide">일반 성인단체</span>
             <h1 class="text-4xl md:text-6xl font-bold mb-4 drop-shadow-lg font-title">제주의 맛과 풍경<br><span class="text-yellow-400 font-bold">2박 3일 여행</span></h1>
             <p id="hero-date" class="text-xl md:text-2xl text-white font-bold tracking-wide mb-2">2026. 11. 07(토) ~ 11. 09(월)</p>
             <p id="hero-desc" class="text-sm md:text-base text-slate-200 font-medium tracking-wide">원주공항에서 제주로 떠나는 일반 성인단체 관광 · 스카이워터쇼·에코랜드·감귤·산방산·카멜리아힐을 잇습니다.</p>
@@ -654,7 +654,7 @@
                     <span class="text-sm font-bold text-slate-700">홈페이지 바로가기</span>
                 </div>
             </a>
-            <p class="text-xs text-slate-500 max-w-2xl mx-auto leading-relaxed mb-6">[System Powered by TOURMAKER] 본 스마트 가이드북은 <strong>박준영님 일행</strong> 제주 관광 일정 안내와 <a href="http://tourmaker.kr" target="_blank" rel="noopener" class="font-bold underline">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.</p>
+            <p class="text-xs text-slate-500 max-w-2xl mx-auto leading-relaxed mb-6">[System Powered by TOURMAKER] 본 스마트 가이드북은 제주 관광 일정 안내와 <a href="http://tourmaker.kr" target="_blank" rel="noopener" class="font-bold underline">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.</p>
             <p class="text-[10px] text-slate-400">&copy; 2026 Tourmaker Inc. All rights reserved.</p>
         </div>
     </footer>
@@ -669,7 +669,7 @@
                 <div class="doc-info">문서번호: TM-261205-PJ</div>
             </div>
             <div class="print-title-section">
-                <h1>박준영님 일행 제주 여행 일정표</h1>
+                <h1>제주 여행 일정표</h1>
             </div>
             <div class="print-overview-slim">
                 <div class="print-overview-item"><span class="label">행사기간</span><span class="value"><span class="print-nowrap">2026. 11. 07 (토) ~ 11. 09 (월)</span></span></div>
@@ -840,7 +840,7 @@
         }
         function shareLink(){
             const url = window.location.href;
-            const title = '박준영님 일행 제주 가이드북';
+            const title = '제주 여행 스마트 가이드북';
             if (navigator.share) {
                 navigator.share({ title, url }).catch(()=>{});
             } else {
@@ -911,7 +911,7 @@
                     const dayCount = ymdDiffDays(today, start) + 1;
                     badge.textContent = `📍 ${dayCount}일차 진행중`;
                     badge.className = 'bg-red-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold animate-pulse';
-                    if(heroDesc) heroDesc.innerHTML = `현재 <strong>박준영님 일행</strong>의 <strong>${dayCount}일차</strong> 여정이 진행되고 있습니다.`;
+                    if(heroDesc) heroDesc.innerHTML = `현재 <strong>${dayCount}일차</strong> 여정이 진행되고 있습니다.`;
                 } else {
                     badge.textContent = '🏁 여정 종료';
                     badge.className = 'bg-slate-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold';
