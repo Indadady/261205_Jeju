@@ -283,7 +283,7 @@
                 <span class="text-indigo-600 font-black tracking-widest text-xs uppercase">ANIMATED ROUTING MAP</span>
                 <h2 class="text-3xl font-bold text-slate-800 tracking-tight font-title mt-2">한눈에 보는 동선 지도</h2>
                 <p class="text-slate-500 mt-2 text-sm md:text-base">실제 도로를 따라 이동 순서가 천천히 그려집니다. 일자 버튼을 누르면 해당 구간만 볼 수 있습니다.</p>
-                <p id="map-hint" class="text-slate-400 mt-1 text-xs">전체 일정 — 원주공항에서 제주로 다녀오는 항공·도로 동선</p>
+                <p id="map-hint" class="text-slate-400 mt-1 text-xs">전체 일정 — 원주↔제주 항공 후 제주도 줌인으로 섬 동선을 이어갑니다</p>
             </div>
             <div class="flex flex-wrap justify-center gap-2 mb-6">
                 <button type="button" onclick="filterMap('all')" id="btn-map-all" class="map-btn px-4 py-2 rounded-full text-sm font-bold bg-slate-800 text-white shadow-sm transition-colors">전체 여정</button>
@@ -500,7 +500,7 @@
                 <p class="text-slate-500 text-sm mt-2">아시아호텔 또는 동급호텔에서 2박합니다. (2인실)</p>
             </div>
             <div class="max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md">
-                <img src="assets/images/hotel.jpg" alt="제주 아시아호텔 또는 동급" class="w-full h-64 md:h-80 object-cover">
+                <img src="assets/images/hotel.jpg" alt="제주 숙소 객실 예시" class="w-full h-64 md:h-80 object-cover">
                 <div class="p-6 md:p-8 grid md:grid-cols-2 gap-6">
                     <div>
                         <h3 class="text-xl font-bold text-slate-800 font-title mb-2">아시아호텔 또는 동급호텔</h3>
@@ -997,7 +997,7 @@
         let activeBus = null;
         const osrmCache = {};
         const mapHints = {
-            all: '전체 일정 — 원주공항에서 제주로 다녀오는 항공·도로 동선',
+            all: '전체 일정 — 원주↔제주 항공 후 제주도 줌인으로 섬 동선',
             day1: '1일차 동선 — 원주공항 → 제주공항 → 스카이워터쇼 → 에코랜드 → 아시아호텔',
             day2: '2일차 동선 — 호텔 → 감귤따기 → 천지연폭포 → 산방산유람선 → 카멜리아힐 → 호텔',
             day3: '3일차 동선 — 호텔 → 농수산쇼핑 → 이호테우 말등대 → 족욕 → 제주공항 → 원주공항'
@@ -1020,6 +1020,7 @@
             all: {
                 points: ['wonjuAirport', 'jejuAirport', 'skywater', 'ecoland', 'hotel', 'tangerine', 'cheonjiyeon', 'sanbang', 'camellia', 'shopping', 'iho', 'footbath'],
                 maxZoom: 7,
+                jejuZoom: 10,
                 lines: [
                     { pts: ['wonjuAirport', 'jejuAirport'], color: '#6366f1', mode: 'air' },
                     { pts: ['jejuAirport', 'skywater', 'ecoland', 'hotel'], color: '#0ea5e9' },
@@ -1030,7 +1031,8 @@
             },
             day1: {
                 points: ['wonjuAirport', 'jejuAirport', 'skywater', 'ecoland', 'hotel'],
-                maxZoom: 10,
+                maxZoom: 7,
+                jejuZoom: 11,
                 lines: [
                     { pts: ['wonjuAirport', 'jejuAirport'], color: '#6366f1', mode: 'air' },
                     { pts: ['jejuAirport', 'skywater', 'ecoland', 'hotel'], color: '#0ea5e9' }
@@ -1043,7 +1045,8 @@
             },
             day3: {
                 points: ['hotel', 'shopping', 'iho', 'footbath', 'jejuAirport', 'wonjuAirport'],
-                maxZoom: 10,
+                maxZoom: 11,
+                jejuZoom: 11,
                 lines: [
                     { pts: ['hotel', 'shopping', 'iho', 'footbath', 'jejuAirport'], color: '#e11d48' },
                     { pts: ['jejuAirport', 'wonjuAirport'], color: '#6366f1', mode: 'air' }
@@ -1172,6 +1175,23 @@
                 requestAnimationFrame(frame);
             });
         }
+        function jejuSpotKeys(routeData) {
+            return routeData.points.filter(key => key !== 'wonjuAirport');
+        }
+        function boundsForKeys(keys) {
+            const b = L.latLngBounds(keys.map(key => spots[key].coords));
+            return b;
+        }
+        function fitMapTo(bounds, maxZoom, animate) {
+            if (!currentMap || !bounds || !bounds.isValid()) return Promise.resolve();
+            const opts = { padding: [48, 48], maxZoom: maxZoom || 11 };
+            if (animate && typeof currentMap.flyToBounds === 'function') {
+                currentMap.flyToBounds(bounds, { ...opts, duration: 1.15 });
+                return new Promise(r => setTimeout(r, 1250));
+            }
+            currentMap.fitBounds(bounds, opts);
+            return new Promise(r => setTimeout(r, 280));
+        }
         async function drawMap(routeKey) {
             if (!currentMap) return;
             const seq = ++mapDrawSeq;
@@ -1181,26 +1201,34 @@
             const hintEl = document.getElementById('map-hint');
             if (hintEl) hintEl.textContent = hint;
             setMapStatus('실제 도로 동선을 불러오는 중...');
-            const bounds = L.latLngBounds(routeData.points.map(key => spots[key].coords));
-            currentMap.fitBounds(bounds, { padding: [50, 50], maxZoom: routeData.maxZoom || 11 });
-            setTimeout(() => currentMap.invalidateSize(), 120);
             const legs = [];
             routeData.lines.forEach(lineDef => {
                 for (let i = 0; i < lineDef.pts.length - 1; i++) {
                     legs.push({ from: lineDef.pts[i], to: lineDef.pts[i + 1], color: lineDef.color, mode: lineDef.mode || 'drive' });
                 }
             });
+            const hasAir = legs.some(leg => leg.mode === 'air');
+            const jejuKeys = jejuSpotKeys(routeData);
+            const jejuZoom = routeData.jejuZoom || 11;
+            // 항공이 있으면 먼저 원주↔제주 광역, 없으면(2일차처럼) 제주도만 줌
+            const startBounds = hasAir && legs[0].mode === 'air'
+                ? boundsForKeys(routeData.points)
+                : boundsForKeys(jejuKeys);
+            await fitMapTo(startBounds, hasAir && legs[0].mode === 'air' ? (routeData.maxZoom || 7) : jejuZoom, false);
+            setTimeout(() => currentMap.invalidateSize(), 120);
             const paths = await Promise.all(legs.map(leg => {
                 if (leg.mode === 'air') return Promise.resolve([spots[leg.from].coords, spots[leg.to].coords]);
                 return roadPath([spots[leg.from].coords, spots[leg.to].coords]);
             }));
             if (seq !== mapDrawSeq) return;
-            paths.forEach(path => path.forEach(pt => bounds.extend(pt)));
-            currentMap.fitBounds(bounds, { padding: [50, 50], maxZoom: routeData.maxZoom || 11 });
-            await new Promise(r => setTimeout(r, 280));
+            await new Promise(r => setTimeout(r, 200));
             if (seq !== mapDrawSeq) return;
-            const ghost = L.polyline(paths.flat(), { color: '#94a3b8', weight: 4, opacity: 0.22, lineJoin: 'round', lineCap: 'round' }).addTo(currentMap);
-            mapLayers.push(ghost);
+            // 고스트 라인: 제주 구간만 옅게 (항공은 별도 재생)
+            const ghostPaths = paths.filter((_, idx) => legs[idx].mode !== 'air');
+            if (ghostPaths.length) {
+                const ghost = L.polyline(ghostPaths.flat(), { color: '#94a3b8', weight: 4, opacity: 0.22, lineJoin: 'round', lineCap: 'round' }).addTo(currentMap);
+                mapLayers.push(ghost);
+            }
             const placed = new Set();
             const addPin = (key) => {
                 if (placed.has(key)) return;
@@ -1222,6 +1250,7 @@
             bus._zeroDeg = firstAir ? 45 : 90;
             activeBus = bus;
             mapLayers.push(bus);
+            let onJejuView = !(hasAir && legs[0].mode === 'air');
             for (let i = 0; i < legs.length; i++) {
                 if (seq !== mapDrawSeq) return;
                 const leg = legs[i];
@@ -1229,23 +1258,54 @@
                 const isAir = leg.mode === 'air';
                 const zero = isAir ? 45 : 90;
                 const emoji = isAir ? '✈️' : '🚌';
+                // 귀국 항공 직전: 다시 원주↔제주 광역으로
+                if (isAir && leg.from === 'jejuAirport' && leg.to === 'wonjuAirport') {
+                    setMapStatus('제주 → 원주 귀국편');
+                    await fitMapTo(boundsForKeys(['jejuAirport', 'wonjuAirport']), routeData.maxZoom || 7, true);
+                    if (seq !== mapDrawSeq) return;
+                    onJejuView = false;
+                }
+                // 제주 도착 후 첫 도로 구간: 제주도 줌인
+                if (!isAir && !onJejuView) {
+                    setMapStatus('제주 도착 · 섬 동선으로 이동');
+                    await fitMapTo(boundsForKeys(jejuKeys), jejuZoom, true);
+                    if (seq !== mapDrawSeq) return;
+                    onJejuView = true;
+                }
                 if (bus._zeroDeg !== zero) {
                     bus._zeroDeg = zero;
                     bus.setIcon(vehicleIcon(emoji, bearingDeg(spots[leg.from].coords, spots[leg.to].coords), zero));
                 }
                 setMapStatus(`${spots[leg.from].title} → ${spots[leg.to].title}`);
                 const poly = L.polyline(path, {
-                    color: leg.color, weight: leg.mode === 'air' ? 3 : 5, opacity: 0.95,
-                    dashArray: leg.mode === 'air' ? '10 8' : null,
+                    color: leg.color, weight: isAir ? 3 : 5, opacity: 0.95,
+                    dashArray: isAir ? '10 8' : null,
                     lineJoin: 'round', lineCap: 'round'
                 }).addTo(currentMap);
                 mapLayers.push(poly);
                 const ready = await whenPathReady(poly);
-                const ms = lineDuration(ready ? ready.getTotalLength() : 400, routeKey);
+                // 제주 도로 구간은 2일차처럼 조금 더 여유 있게
+                const durationKey = (!isAir && onJejuView && routeKey === 'all') ? 'day2' : routeKey;
+                const ms = lineDuration(ready ? ready.getTotalLength() : 400, durationKey);
                 await Promise.all([animateLine(poly, ms), moveMarkerAlong(bus, path, ms)]);
                 if (seq !== mapDrawSeq) return;
                 addPin(leg.to);
-                await new Promise(r => setTimeout(r, isMobileView() ? 280 : 140));
+                // 출국 항공 직후에도 제주 줌인 준비
+                if (isAir && leg.to === 'jejuAirport') {
+                    await new Promise(r => setTimeout(r, isMobileView() ? 320 : 180));
+                    if (seq !== mapDrawSeq) return;
+                    setMapStatus('제주 도착 · 섬 동선으로 이동');
+                    await fitMapTo(boundsForKeys(jejuKeys), jejuZoom, true);
+                    if (seq !== mapDrawSeq) return;
+                    onJejuView = true;
+                } else {
+                    await new Promise(r => setTimeout(r, isMobileView() ? 280 : 140));
+                }
+            }
+            if (seq !== mapDrawSeq) return;
+            // 종료 시 제주 동선이 보이도록 유지 (귀국 항공만 있는 day3는 광역 유지)
+            if (onJejuView || routeKey === 'day2' || routeKey === 'all') {
+                await fitMapTo(boundsForKeys(jejuKeys), jejuZoom, true);
             }
             if (seq !== mapDrawSeq) return;
             setMapStatus(hint);
