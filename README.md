@@ -1,11 +1,11 @@
 # 제주 2박3일 스마트 가이드북
 
-2026. 11. 07(토) ~ 11. 09(월) · 2박 3일 · 일반 성인단체 15명  
+2026. 12. 04(금) ~ 12. 06(일) · 2박 3일 · 일반 성인단체 15명  
 원주 ↔ 제주 · 숙소 아시아호텔 또는 동급 · 관광 위주  
 ※ 단체명은 추후 반영
 
-- 가이드북: https://indadady.github.io/261205_Jeju/
-- 저장소: https://github.com/Indadady/261205_Jeju
+- 가이드북: https://indadady.github.io/261204_Jeju/
+- 저장소: https://github.com/Indadady/261204_Jeju
 
 ## 담당
 
