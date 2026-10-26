@@ -99,8 +99,8 @@
             body { background-color: #ffffff !important; font-size: 10pt; color: #1e293b !important; }
             a[href]:after { content: none !important; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            .print-hidden, .print\:hidden { display: none !important; }
-            #print-area { display: block !important; width: 100%; color: #1e293b; font-family: 'Noto Sans KR', sans-serif; }
+            .print-hidden, .print\:hidden, #tm-inquiry-modal { display: none !important; }
+            #print-area { display: block !important; width: 100%; color: #1e293b; font-family: 'Noto Sans KR', sans-serif; background: #fff; }
             .print-page-container { width: 100%; margin: 0; padding: 0; }
             .print-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 8px; margin-bottom: 15px; }
             .print-header .logo img { height: 32px; object-fit: contain; }
@@ -407,7 +407,7 @@
                                         <h4 class="font-bold text-lg">14:50–17:30 신화월드 테마파크</h4>
                                         <p class="text-slate-500 text-sm mt-1">자유이용으로 둘러봅니다.</p>
                                     </div>
-                                    <img src="assets/images/day1-shinhwa.jpg" alt="신화월드" class="schedule-thumb">
+                                    <img src="assets/images/day1-shinhwa.jpg" alt="신화테마파크" class="schedule-thumb">
                                 </div>
                             </div>
                             <div class="relative pl-8 border-l-2 border-emerald-200">
@@ -504,7 +504,7 @@
                                         <h4 class="font-bold text-lg">09:20–10:50 에코랜드</h4>
                                         <p class="text-slate-500 text-sm mt-1">곶자왈 관광 궤도열차로 숲을 지나갑니다.</p>
                                     </div>
-                                    <img src="assets/images/day3-gotjawal.jpg" alt="제주 곶자왈" class="schedule-thumb">
+                                    <img src="assets/images/day3-gotjawal.jpg" alt="에코랜드" class="schedule-thumb">
                                 </div>
                             </div>
                             <div class="relative pl-8 border-l-2 border-sky-200">
@@ -579,31 +579,38 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
 
     <section id="hotel" class="py-16 bg-slate-50 border-t border-slate-200">
         <div class="container mx-auto px-4">
             <div class="text-center mb-10">
                 <span class="text-indigo-500 font-black tracking-widest text-xs uppercase">Accommodation</span>
                 <h2 class="text-2xl md:text-3xl font-bold text-slate-800 mt-2 font-title">전일정 3박 숙박</h2>
-                <p class="text-slate-500 text-sm mt-2">아시아호텔 또는 동급에서 3박합니다. 숙소 사진은 배정이 정리된 뒤 안내합니다.</p>
+                <p class="text-slate-500 text-sm mt-2">아시아호텔 제주 또는 동급에서 3박합니다.</p>
             </div>
             <div class="max-w-5xl mx-auto bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md">
-                <div class="p-6 md:p-8 grid md:grid-cols-2 gap-6">
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-800 font-title mb-2">아시아호텔 또는 동급</h3>
-                        <p class="text-sm text-slate-600 leading-relaxed">제주시 일대 · 12/5 체크인 후 12/8 오전까지 3박</p>
-                        <ul class="mt-4 text-sm text-slate-600 space-y-1.5">
-                            <li><i class="fa-solid fa-bed text-indigo-500 w-4"></i> 객실 배정은 현장에서 안내합니다</li>
-                            <li><i class="fa-solid fa-moon text-indigo-500 w-4"></i> 야간 안전 요원 22:00–06:00</li>
-                            <li><i class="fa-solid fa-pump-soap text-indigo-500 w-4"></i> 제주 호텔은 세면도구를 두지 않는 곳이 많습니다</li>
-                        </ul>
-                    </div>
-                    <div class="flex flex-col justify-center gap-3">
-                        <div class="bg-indigo-50 border border-indigo-100 rounded-xl px-4 py-3 text-sm text-slate-700 leading-relaxed">
-                            같은 숙소에서 3박합니다. 밤에는 다른 투숙객을 생각해 조용히 지내 주세요. 위치와 연락처는 배정 후 선생님을 통해 안내합니다.
-                        </div>
-                        <p class="text-xs text-slate-500">현지 사정에 따라 동급 숙소로 바뀔 수 있습니다.</p>
-                    </div>
+                <div class="grid md:grid-cols-2">
+                    <figure class="relative">
+                        <img src="assets/images/hotel.jpg" alt="아시아호텔 제주 전경" class="w-full h-52 md:h-72 object-cover">
+                        <figcaption class="absolute bottom-3 left-3 bg-black/55 text-white text-xs font-bold px-2.5 py-1 rounded-full">호텔 전경</figcaption>
+                    </figure>
+                    <figure class="relative">
+                        <img src="assets/images/hotel-room.jpg" alt="아시아호텔 제주 객실" class="w-full h-52 md:h-72 object-cover">
+                        <figcaption class="absolute bottom-3 left-3 bg-black/55 text-white text-xs font-bold px-2.5 py-1 rounded-full">객실</figcaption>
+                    </figure>
+                </div>
+                <div class="p-6 md:p-8">
+                    <h3 class="text-xl font-bold text-slate-800 font-title mb-2">아시아호텔 제주 또는 동급</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">제주시 노연로 53 · 12/5 체크인 후 12/8 오전까지 3박</p>
+                    <ul class="mt-4 text-sm text-slate-600 space-y-1.5">
+                        <li><i class="fa-solid fa-bed text-indigo-500 w-4"></i> 객실 배정은 현장에서 안내합니다</li>
+                        <li><i class="fa-solid fa-pump-soap text-indigo-500 w-4"></i> 제주 호텔은 세면도구를 두지 않는 곳이 많습니다</li>
+                        <li><i class="fa-solid fa-phone text-indigo-500 w-4"></i> 064-798-0881</li>
+                        <li><i class="fa-solid fa-moon text-indigo-500 w-4"></i> 밤에는 다른 투숙객을 생각해 조용히 지내 주세요</li>
+                    </ul>
+                    <p class="text-xs text-slate-500 mt-4">현지 사정에 따라 동급 숙소로 바뀔 수 있습니다. 사진은 아시아호텔 제주 안내 사진입니다.</p>
                 </div>
             </div>
         </div>
@@ -710,7 +717,7 @@
                         <i class="fa-solid fa-leaf text-green-500 shrink-0"></i>
                         <span>ESG 실천 대시보드</span>
                     </h3>
-                    <div class="grid grid-cols-3 gap-1.5 sm:gap-3 text-center mb-3 sm:mb-4">
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-1.5 sm:gap-3 text-center mb-3 sm:mb-4">
                         <div class="bg-white p-2.5 sm:p-3 rounded-xl shadow-sm border border-green-100 min-w-0">
                             <i class="fa-solid fa-tree text-green-500 text-base sm:text-xl mb-1"></i>
                             <p class="esg-stat-label text-[10px] sm:text-[11px] text-slate-500 font-bold">종이 절감</p>
@@ -726,9 +733,13 @@
                             <p class="esg-stat-label text-[10px] sm:text-[11px] text-slate-500 font-bold">물 절약</p>
                             <p class="font-black text-blue-700 text-sm sm:text-lg mt-0.5" id="esg-water">대체</p>
                         </div>
+                        <div class="bg-white p-2.5 sm:p-3 rounded-xl shadow-sm border border-green-100 min-w-0">
+                            <i class="fa-solid fa-eye text-green-600 text-base sm:text-xl mb-1"></i>
+                            <p class="esg-stat-label text-[10px] sm:text-[11px] text-slate-500 font-bold">실시간 열람</p>
+                            <p class="font-black text-green-800 text-sm sm:text-lg mt-0.5" id="tm-view-count"><span class="tm-view-count-val">—</span>회</p>
+                        </div>
                     </div>
-                    <p id="tm-view-count" class="tm-view-count text-sm font-bold text-green-800 bg-white p-3 rounded-lg border border-green-100">📊 실시간 가이드북 열람 : —회</p>
-                    <p class="text-[11px] sm:text-xs text-slate-600 leading-relaxed bg-white p-3 rounded-lg border border-green-100 mt-3" id="esg-desc">이 화면이 종이 일정표를 대신합니다. 열람 수가 디지털 전환 기록입니다.</p>
+                    <p class="text-[11px] sm:text-xs text-slate-600 leading-relaxed bg-white p-3 rounded-lg border border-green-100" id="esg-desc">이 화면이 종이 일정표를 대신합니다. 열람 수가 디지털 전환 기록입니다.</p>
                 </div>
             </div>
         </div>
@@ -744,7 +755,7 @@
             </a>
             <div class="no-print max-w-xl mx-auto mb-8 bg-white border border-indigo-100 rounded-2xl p-5 shadow-sm">
                 <p class="text-sm font-bold text-slate-800">우리 모임·학교·기관도 스마트 가이드북으로 여행 준비하기</p>
-                <p class="tm-view-count text-xs text-slate-500 mt-2">📊 실시간 가이드북 열람 : —회</p>
+                <p class="text-xs text-slate-500 mt-2">📊 실시간 가이드북 열람 : <span class="tm-view-count-val">—</span>회</p>
                 <button type="button" onclick="openInquiry()" class="mt-4 inline-flex items-center justify-center gap-2 bg-indigo-600 text-white px-4 py-3 rounded-xl text-sm font-bold hover:bg-indigo-700">투어메이커 맞춤 견적 · 상담 문의</button>
             </div>
             <p class="text-xs text-slate-500 max-w-2xl mx-auto leading-relaxed mb-6">[System Powered by TOURMAKER] 본 스마트 가이드북은 <strong>사북청소년장학센터</strong> 제주 일정 안내와 <a href="http://tourmaker.kr" target="_blank" rel="noopener" class="font-bold underline">투어메이커</a>의 트래블 테크 기술 제휴로 제작되었습니다.</p>
@@ -1145,14 +1156,13 @@
 
         (function initESG() {
             const descEl = document.getElementById('esg-desc');
-            if (descEl) descEl.innerHTML = '이 화면이 종이 일정표를 대신합니다. 아래 열람 수가 디지털 전환 기록입니다.';
+            if (descEl) descEl.textContent = '이 화면이 종이 일정표를 대신합니다. 열람 수가 디지털 전환 기록입니다.';
         })();
 
         (function initViewCount() {
             const slug = '261205_Jeju';
             const paint = (n) => {
-                const text = '📊 실시간 가이드북 열람 : ' + n + '회';
-                document.querySelectorAll('#tm-view-count, .tm-view-count').forEach(el => { el.textContent = text; });
+                document.querySelectorAll('.tm-view-count-val').forEach(el => { el.textContent = n; });
             };
             const seen = sessionStorage.getItem('tm_view_' + slug);
             const path = seen ? '/get/' : '/hit/';
@@ -1247,7 +1257,7 @@
             wonju: { coords: [37.4381, 127.9606], title: '원주공항', color: '#1e293b', icon: '✈️' },
             jejuAirport: { coords: [33.5070711, 126.4916441], title: '제주공항', color: '#1e293b', icon: '✈️' },
             shinhwa: { coords: [33.3050, 126.3172], title: '신화월드', color: '#059669', icon: '🎢' },
-            hotel: { coords: [33.4865, 126.4940], title: '숙소', color: '#0f766e', icon: '🏨' },
+            hotel: { coords: [33.48627, 126.48587], title: '아시아호텔 제주', color: '#0f766e', icon: '🏨' },
             osulloc: { coords: [33.305366, 126.288022], title: '오설록', color: '#16a34a', icon: '🍵' },
             camellia: { coords: [33.2896315, 126.3698892], title: '카멜리아힐', color: '#e11d48', icon: '🌺' },
             cheonjiyeon: { coords: [33.2469271, 126.5545282], title: '천지연폭포', color: '#0891b2', icon: '💧' },
