@@ -1,18 +1,23 @@
 # Image credits
 
-관광지 사진은 Wikimedia Commons에서 받아 `assets/images/`에 두었습니다. 숙소 전경·객실은 아시아호텔 제주 공식 홈페이지 안내 사진입니다.
+관광지 사진은 Wikimedia Commons·공개 이미지에서 받아 `assets/images/`에 두었습니다. 숙소 전경·객실은 아시아호텔 제주 공식 홈페이지 안내 사진입니다.
 
 | File | Source | License |
 |------|--------|---------|
 | hero.jpg | [Commons: File:Seongsan Ilchulbong 01.jpg](https://commons.wikimedia.org/wiki/File:Seongsan_Ilchulbong_01.jpg) · Bernard Gagnon | CC0 |
 | og-thumb.jpg | [Commons: File:Korea-Jeju-Cheonjiyeon Waterfall-01.jpg](https://commons.wikimedia.org/wiki/File:Korea-Jeju-Cheonjiyeon_Waterfall-01.jpg) · Martin Chen | CC BY 2.0 |
-| day1-shinhwa.jpg | [Commons: File:신화테마파크.jpg](https://commons.wikimedia.org/wiki/File:%EC%8B%A0%ED%99%94%ED%85%8C%EB%A7%88%ED%8C%8C%ED%81%AC.jpg) · 그루터기 | CC BY-SA 2.0 kr |
-| day2-osulloc.jpg | [Commons: File:O'Sulloc Tea Field.jpg](https://commons.wikimedia.org/wiki/File:O%27Sulloc_Tea_Field.jpg) · LIUCKIM8 | CC BY-SA 4.0 |
-| day2-camellia.jpg | [Commons: File:Eco-Pond, Camellia Hill, Jeju](https://commons.wikimedia.org/wiki/File:Eco-Pond,_Camellia_Hill,_Jeju_(%EC%83%9D%ED%83%9C%EC%97%B0%EB%AA%BB,_%EC%A0%9C%EC%A3%BC_%EC%B9%B4%EB%A9%9C%EB%A6%AC%EC%95%84%ED%9E%90)_-_panoramio.jpg) · 골뱅이 | CC BY-SA 3.0 |
-| day2-cheonjiyeon.jpg | [Commons: File:Korea-Jeju-Cheonjiyeon Waterfall-01.jpg](https://commons.wikimedia.org/wiki/File:Korea-Jeju-Cheonjiyeon_Waterfall-01.jpg) · Martin Chen | CC BY 2.0 |
-| day3-gotjawal.jpg | [Commons: File:Q12606754 Ecoland A05.jpg](https://commons.wikimedia.org/wiki/File:Q12606754_Ecoland_A05.jpg) · revi | CC BY 2.0 kr |
-| day3-aqua.jpg | [Commons: File:제주 아쿠아플라넷.jpg](https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC_%EC%95%84%EC%BF%A0%EC%95%84%ED%94%8C%EB%9D%BC%EB%84%B7.jpg) · 멍한오리 | CC BY-SA 3.0 |
+| day1-haribo.jpg | Unsplash (candy / jelly theme) | Unsplash License |
+| day1-nexon.jpg | [Commons: File:Nexon Computer Museum.jpg](https://commons.wikimedia.org/wiki/File:Nexon_Computer_Museum.jpg) | CC BY-SA |
+| day2-peace.jpg | [Commons: File:Jeju 4.3 Peace Park Museum.jpg](https://commons.wikimedia.org/wiki/File:Jeju_4.3_Peace_Park_Museum.jpg) | CC |
+| day2-maze.jpg | Unsplash (kids activity) | Unsplash License |
+| day2-hueree.jpg | Camellia Hill Commons photo (동백 분위기 대체) | CC BY-SA 3.0 |
+| day2-tangerine.jpg | [Commons: File:Jejuolle-route-07(4).jpg](https://commons.wikimedia.org/wiki/File:Jejuolle-route-07(4).jpg) | CC |
+| day3-aerospace.jpg | [Commons: File:Jeju Aerospace Museum Aviation Hall 20140606-01.JPG](https://commons.wikimedia.org/wiki/File:Jeju_Aerospace_Museum_Aviation_Hall_20140606-01.JPG) | CC |
+| day3-alteureu.jpg | [Commons: File:알뜨르 비행장의 격납고.jpg](https://commons.wikimedia.org/wiki/File:%EC%95%8C%EB%9C%A8%EB%A5%B4_%EB%B9%84%ED%96%89%EC%9E%A5%EC%9D%98_%EA%B2%A9%EB%82%A9%EA%B3%A0.jpg) | CC |
+| day3-waterworld.jpg | [Commons: File:Jeju World Cup Stadium, Jeju Island.jpg](https://commons.wikimedia.org/wiki/File:Jeju_World_Cup_Stadium,_Jeju_Island.jpg) (워터월드 인근 월드컵경기장) | CC |
+| day3-dongmun.jpg | [Commons: File:Jeju dongmun market 1.JPG](https://commons.wikimedia.org/wiki/File:Jeju_dongmun_market_1.JPG) | CC |
 | day4-iho.jpg | [Commons: File:Iho Tewoo Beach 10.jpg](https://commons.wikimedia.org/wiki/File:Iho_Tewoo_Beach_10.jpg) · Grapesurgeon | CC BY-SA 4.0 |
+| day4-folk.jpg | [Commons: File:제주특별자치도민속자연사박물관 입구.jpg](https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%EB%AF%BC%EC%86%8D%EC%9E%90%EC%97%B0%EC%82%AC%EB%B0%95%EB%AC%BC%EA%B4%80_%EC%9E%85%EA%B5%AC.jpg) | CC |
 | hotel.jpg | [아시아호텔 제주 공식 홈페이지](https://www.asiajeju.com/) 메인 전경 | 호텔 안내 사진 |
 | hotel-room.jpg | [아시아호텔 제주 공식 홈페이지](https://www.asiajeju.com/) 객실 안내 | 호텔 안내 사진 |
 | guidebook-qr.png | 이 가이드북 주소로 생성 | — |
