@@ -97,57 +97,76 @@
         .esg-stat-label { line-height: 1.25; word-break: keep-all; }
         @media screen { #print-area { display: none !important; } }
         @media print {
-            @page { size: A4 portrait; margin: 12mm 10mm; }
-            body { background-color: #ffffff !important; font-size: 10pt; color: #1e293b !important; }
-            a[href]:after { content: none !important; }
+            @page { size: A4 portrait; margin: 10mm 9mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-            .print-hidden, .print\:hidden, .no-print, #tm-inquiry-modal, #guidebook-lock-modal, #toast { display: none !important; }
-            #print-area { display: block !important; width: 100%; color: #1e293b; font-family: 'Noto Sans KR', sans-serif; background: #fff; }
-            .print-page-container { width: 100%; margin: 0; padding: 0; }
-            .print-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 8px; margin-bottom: 15px; }
-            .print-header .logo img { height: 32px; object-fit: contain; }
-            .print-header .doc-info { text-align: right; font-size: 11px; color: #475569; }
-            .print-title-section { text-align: center; margin-bottom: 15px; }
-            .print-title-section h1 { font-size: 20px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; margin: 0; }
-            .print-overview-slim {
-                display: flex; justify-content: space-between; gap: 8px;
-                background-color: #f8fafc; border: 1px solid #94a3b8; border-radius: 6px;
-                padding: 8px 14px; margin-bottom: 15px; font-size: 12.5px; word-break: keep-all;
+            html, body {
+                background: #fff !important; color: #1e293b !important;
+                margin: 0 !important; padding: 0 !important; width: 100% !important;
+                font-size: 10pt; height: auto !important; overflow: visible !important;
             }
-            .print-overview-item { display: flex; gap: 8px; align-items: flex-start; min-width: 0; }
+            a[href]:after { content: none !important; }
+            /* 화면 UI 전부 숨기고 인쇄용 2페이지만 출력 */
+            body > *:not(#print-area) { display: none !important; }
+            .print-hidden, .print\:hidden, .no-print,
+            header, footer, section, nav, #map, #map-section, #tm-inquiry-modal,
+            #guidebook-lock-modal, #toast, #event-day-bar { display: none !important; }
+            #print-area {
+                display: block !important; width: 100% !important;
+                color: #1e293b; font-family: 'Noto Sans KR', sans-serif; background: #fff;
+                margin: 0 !important; padding: 0 !important;
+            }
+            .print-page-container {
+                width: 100%; margin: 0; padding: 0;
+                page-break-after: always; break-after: page;
+            }
+            .print-pack.print-page-2 {
+                width: 100%; margin: 0; padding: 0;
+                page-break-before: auto; break-before: auto;
+                page-break-after: avoid; break-after: avoid;
+            }
+            .print-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 6px; margin-bottom: 10px; }
+            .print-header .logo img { height: 28px; object-fit: contain; }
+            .print-header .doc-info { text-align: right; font-size: 10.5px; color: #475569; }
+            .print-title-section { text-align: center; margin-bottom: 10px; }
+            .print-title-section h1 { font-size: 18px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; margin: 0; }
+            .print-overview-slim {
+                display: flex; justify-content: space-between; gap: 6px;
+                background-color: #f8fafc; border: 1px solid #94a3b8; border-radius: 6px;
+                padding: 6px 12px; margin-bottom: 10px; font-size: 11.5px; word-break: keep-all;
+            }
+            .print-overview-item { display: flex; gap: 6px; align-items: flex-start; min-width: 0; }
             .print-overview-slim .label { font-weight: 700; color: #004098; white-space: nowrap; flex-shrink: 0; }
-            .print-overview-slim .value { line-height: 1.45; }
+            .print-overview-slim .value { line-height: 1.4; }
             .print-nowrap { white-space: nowrap; }
-            .print-table { width: 100%; border-collapse: collapse; margin-bottom: 15px; font-size: 12px; table-layout: fixed; border: 2px solid #1e293b; }
-            .print-table th, .print-table td { border: 1px solid #1e293b; padding: 8px 10px; vertical-align: top; page-break-inside: avoid; word-break: keep-all; }
-            .print-table th { background-color: #f8fafc !important; color: #1e293b; font-weight: 700; text-align: center; font-size: 12.5px; border-bottom: 2px solid #1e293b; }
+            .print-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 11px; table-layout: fixed; border: 2px solid #1e293b; }
+            .print-table th, .print-table td { border: 1px solid #1e293b; padding: 5px 7px; vertical-align: top; page-break-inside: avoid; word-break: keep-all; }
+            .print-table th { background-color: #f8fafc !important; color: #1e293b; font-weight: 700; text-align: center; font-size: 11.5px; border-bottom: 2px solid #1e293b; }
             .print-table tr { page-break-inside: avoid; }
             .print-col-date { width: 10%; text-align: center; font-weight: 700; vertical-align: middle; background-color: #f8fafc; }
             .print-col-desc { width: 70%; }
             .print-col-meal { width: 20%; text-align: center; vertical-align: middle; }
             .print-day-divider td { border-top: 2px solid #1e293b !important; }
-            .print-time-flow { margin-bottom: 4px; font-weight: 500; font-size: 12px; }
-            .print-time-tag { display: inline-block; color: #004098; font-weight: 700; margin-right: 5px; }
+            .print-time-flow { margin-bottom: 2px; font-weight: 500; font-size: 11px; }
+            .print-time-tag { display: inline-block; color: #004098; font-weight: 700; margin-right: 4px; }
             .print-highlight { font-weight: 700; color: #0f172a; }
-            .print-desc-list { list-style: none; margin: 4px 0 8px 0; padding-left: 5px; font-size: 12px; }
-            .print-desc-list li { position: relative; padding-left: 12px; margin-bottom: 3px; line-height: 1.45; }
-            .print-desc-list li::before { content: '■'; font-size: 8px; position: absolute; left: 0; top: 3px; color: #004098; }
-            .print-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 8px 0 6px 0; }
-            .print-hotel-info { font-size: 12px; color: #0f172a; font-weight: 700; }
-            .print-meal-wrapper { display: flex; flex-direction: column; gap: 8px; justify-content: center; height: 100%; text-align: left; padding-left: 2px; }
-            .print-meal-simple { display: flex; align-items: flex-start; line-height: 1.4; font-size: 11.5px; gap: 2px; }
+            .print-desc-list { list-style: none; margin: 2px 0 4px 0; padding-left: 4px; font-size: 11px; }
+            .print-desc-list li { position: relative; padding-left: 11px; margin-bottom: 2px; line-height: 1.35; }
+            .print-desc-list li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 3px; color: #004098; }
+            .print-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 4px 0 3px 0; }
+            .print-hotel-info { font-size: 11px; color: #0f172a; font-weight: 700; }
+            .print-meal-wrapper { display: flex; flex-direction: column; gap: 5px; justify-content: center; height: 100%; text-align: left; padding-left: 2px; }
+            .print-meal-simple { display: flex; align-items: flex-start; line-height: 1.35; font-size: 10.5px; gap: 2px; }
             .print-meal-simple strong { color: #004098; margin-right: 2px; width: 16px; flex-shrink: 0; }
             .print-meal-menu { display: block; min-width: 0; flex: 1; word-break: keep-all; overflow-wrap: break-word; white-space: normal; }
-            .print-meal-sub { display: block; font-size: 10.5px; margin-top: 2px; color: #475569; }
-            .print-remarks { font-size: 11px; color: #475569; text-align: right; font-weight: 500; margin-bottom: 10px; }
-            .print-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 18px; padding: 8px 10px; background: #f8fafc !important; border: 1px solid #cbd5e1 !important; border-radius: 4px; font-size: 9.5px; margin-bottom: 8px; }
+            .print-meal-sub { display: block; font-size: 10px; margin-top: 1px; color: #475569; }
+            .print-remarks { font-size: 10px; color: #475569; text-align: right; font-weight: 500; margin-bottom: 6px; }
+            .print-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 14px; padding: 6px 8px; background: #f8fafc !important; border: 1px solid #cbd5e1 !important; border-radius: 4px; font-size: 9px; margin-bottom: 6px; }
             .print-contacts .pc-role { font-weight: 700; color: #004098; margin-right: 3px; }
-            .print-footer-box { margin-top: 10px; padding-top: 10px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-end; }
-            .print-brand-link { font-size: 11px; color: #6c757d; }
-            .print-manager-info { text-align: right; border-left: 3px solid #004098; padding-left: 10px; }
-            .print-manager-info .names { color: #0f172a; font-weight: 700; font-size: 12.5px; }
-            .print-page-2 { page-break-before: always; break-before: page; }
-            .print-pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
+            .print-footer-box { margin-top: 6px; padding-top: 6px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-end; }
+            .print-brand-link { font-size: 10px; color: #6c757d; }
+            .print-manager-info { text-align: right; border-left: 3px solid #004098; padding-left: 8px; }
+            .print-manager-info .names { color: #0f172a; font-weight: 700; font-size: 11.5px; }
+            .print-pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
             .print-pack-card { border: 1.5px solid #1e293b; border-radius: 6px; padding: 12px 14px; background: #fff !important; page-break-inside: avoid; }
             .print-pack-card h2 { font-size: 13.5px; font-weight: 800; color: #004098; margin: 0 0 8px 0; }
             .print-check-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; font-weight: 600; line-height: 1.45; margin-bottom: 5px; }
@@ -382,7 +401,7 @@
                     </div>
                     <div class="text-center sm:text-right shrink-0">
                         <button type="button" onclick="handlePrint()" class="inline-flex items-center justify-center gap-1.5 bg-slate-800 text-white px-3 py-1.5 rounded-lg text-xs font-bold shadow-md hover:bg-slate-700"><i class="fa-solid fa-print"></i> 일정표 인쇄하기</button>
-                        <p class="md:hidden mt-2 text-xs text-slate-500 leading-relaxed max-w-[16rem] mx-auto sm:ml-auto sm:mr-0">모바일(카카오톡 등)에서는<br>인쇄가 어려울 수 있어요.<br>다른 브라우저나 PC에서 열어 주세요.</p>
+                        <p class="mt-2 text-xs text-slate-500 leading-relaxed max-w-[16rem] mx-auto sm:ml-auto sm:mr-0">모바일(카카오톡 등)에서는<br>인쇄가 어려울 수 있어요.<br>다른 브라우저나 PC에서 열어 주세요.</p>
                     </div>
                 </div>
                 <div class="text-center mb-10">
