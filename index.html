@@ -1525,39 +1525,31 @@
         function lineDuration(pixelLength, routeKey) {
             const mobile = isMobileView();
             const allView = routeKey === 'all';
-            const min = mobile ? (allView ? 1600 : 2800) : (allView ? 900 : 1400);
-            const max = mobile ? (allView ? 2800 : 5600) : (allView ? 1800 : 2800);
-            const pxPerMs = mobile ? (allView ? 0.22 : 0.12) : 0.28;
+            const min = mobile ? (allView ? 2400 : 4200) : (allView ? 1500 : 2400);
+            const max = mobile ? (allView ? 4200 : 8400) : (allView ? 2800 : 4600);
+            const pxPerMs = mobile ? (allView ? 0.14 : 0.08) : 0.16;
             return Math.max(min, Math.min(max, pixelLength / pxPerMs));
         }
-        function whenPathReady(polyline) {
+        function fitLeg(bounds, maxZoom) {
             return new Promise(resolve => {
-                let tries = 24;
-                const tick = () => {
-                    const el = polyline.getElement();
-                    if (el && typeof el.getTotalLength === 'function') resolve(el);
-                    else if (tries-- > 0) requestAnimationFrame(tick);
-                    else resolve(null);
+                if (!currentMap) { resolve(); return; }
+                const target = currentMap._getBoundsCenterZoom(bounds, { padding: [48, 48], maxZoom });
+                const same = Math.abs(currentMap.getZoom() - target.zoom) < 0.05
+                    && currentMap.getCenter().distanceTo(target.center) < 12;
+                if (same) { resolve(); return; }
+                let done = false;
+                const finish = () => {
+                    if (done) return;
+                    done = true;
+                    currentMap.off('moveend', finish);
+                    resolve();
                 };
-                requestAnimationFrame(tick);
+                currentMap.once('moveend', finish);
+                currentMap.fitBounds(bounds, { padding: [48, 48], maxZoom, duration: 0.45 });
+                setTimeout(finish, 900);
             });
         }
-        function animateLine(polyline, duration) {
-            return new Promise(async resolve => {
-                const path = await whenPathReady(polyline);
-                if (!path) { resolve(duration); return; }
-                const length = path.getTotalLength();
-                const ms = duration || 1400;
-                path.style.transition = 'none';
-                path.style.strokeDasharray = length + ' ' + length;
-                path.style.strokeDashoffset = String(length);
-                path.getBoundingClientRect();
-                path.style.transition = `stroke-dashoffset ${ms}ms ease-in-out`;
-                path.style.strokeDashoffset = '0';
-                setTimeout(() => resolve(ms), ms + 40);
-            });
-        }
-        function moveMarkerAlong(marker, latlngs, duration) {
+        function moveMarkerAlong(marker, polyline, latlngs, duration) {
             return new Promise(resolve => {
                 if (!marker || !latlngs || latlngs.length < 2) { resolve(); return; }
                 const dists = [0];
@@ -1579,8 +1571,14 @@
                     const a = latlngs[i - 1];
                     const b = latlngs[Math.min(i, latlngs.length - 1)];
                     const span = (dists[i] - dists[i - 1]) || 1;
-                    const f = (target - dists[i - 1]) / span;
-                    marker.setLatLng([a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f]);
+                    const f = Math.max(0, Math.min(1, (target - dists[i - 1]) / span));
+                    const pos = [a[0] + (b[0] - a[0]) * f, a[1] + (b[1] - a[1]) * f];
+                    marker.setLatLng(pos);
+                    if (polyline) {
+                        const drawn = latlngs.slice(0, Math.max(i, 1));
+                        drawn.push(pos);
+                        polyline.setLatLngs(drawn);
+                    }
                     const heading = bearingDeg(a, b);
                     let aim = b;
                     for (let k = i; k < latlngs.length; k++) {
@@ -1674,19 +1672,25 @@
                     busEl.textContent = emoji;
                 }
                 const legMax = leg.mode === 'air' ? 5 : 12;
-                currentMap.fitBounds(L.latLngBounds(path), { padding: [48, 48], maxZoom: legMax });
-                const poly = L.polyline(path, {
+                await fitLeg(L.latLngBounds(path), legMax);
+                if (seq !== mapDrawSeq) return;
+                const poly = L.polyline([path[0], path[0]], {
                     color: leg.color, weight: leg.mode === 'air' ? 3 : 5, opacity: 0.95,
                     dashArray: leg.mode === 'air' ? '10 8' : null,
                     lineJoin: 'round', lineCap: 'round'
                 }).addTo(currentMap);
                 mapLayers.push(poly);
-                const ready = await whenPathReady(poly);
-                const ms = lineDuration(ready ? ready.getTotalLength() : 400, routeKey);
-                await Promise.all([animateLine(poly, ms), moveMarkerAlong(bus, path, ms)]);
+                let px = 0;
+                for (let p = 1; p < path.length; p++) {
+                    const a = currentMap.latLngToContainerPoint(path[p - 1]);
+                    const b = currentMap.latLngToContainerPoint(path[p]);
+                    px += Math.hypot(b.x - a.x, b.y - a.y);
+                }
+                const ms = lineDuration(px || 400, routeKey);
+                await moveMarkerAlong(bus, poly, path, ms);
                 if (seq !== mapDrawSeq) return;
                 addPin(leg.to);
-                await new Promise(r => setTimeout(r, isMobileView() ? 280 : 140));
+                await new Promise(r => setTimeout(r, isMobileView() ? 420 : 260));
             }
             if (seq !== mapDrawSeq) return;
             if (routeKey === 'all') {
