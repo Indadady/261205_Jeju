@@ -13,7 +13,7 @@
 | day2-tangerine.jpg | [Commons: File:Jejuolle-route-07(4).jpg](https://commons.wikimedia.org/wiki/File:Jejuolle-route-07(4).jpg) | CC |
 | day3-aerospace.jpg | [Commons: File:Jeju Aerospace Museum Aviation Hall 20140606-01.JPG](https://commons.wikimedia.org/wiki/File:Jeju_Aerospace_Museum_Aviation_Hall_20140606-01.JPG) | CC |
 | day3-alteureu.jpg | [Commons: File:알뜨르 비행장의 격납고.jpg](https://commons.wikimedia.org/wiki/File:%EC%95%8C%EB%9C%A8%EB%A5%B4_%EB%B9%84%ED%96%89%EC%9E%A5%EC%9D%98_%EA%B2%A9%EB%82%A9%EA%B3%A0.jpg) | CC |
-| day3-waterworld.jpg | [Commons: File:Jeju World Cup Stadium, Jeju Island.jpg](https://commons.wikimedia.org/wiki/File:Jeju_World_Cup_Stadium,_Jeju_Island.jpg) (워터월드 인근 월드컵경기장) | CC |
+| day3-waterworld.jpg | [비짓제주 워터월드 제주](https://www.visitjeju.net/kr/detail/view?contentsid=CNTS_300000000013152) 실내 미디어아트 안내 사진 | 제주관광공사 안내 사진 |
 | day4-iho.jpg | [Commons: File:Iho Tewoo Beach 10.jpg](https://commons.wikimedia.org/wiki/File:Iho_Tewoo_Beach_10.jpg) · Grapesurgeon | CC BY-SA 4.0 |
 | day4-folk.jpg | [Commons: File:제주특별자치도민속자연사박물관 입구.jpg](https://commons.wikimedia.org/wiki/File:%EC%A0%9C%EC%A3%BC%ED%8A%B9%EB%B3%84%EC%9E%90%EC%B9%98%EB%8F%84%EB%AF%BC%EC%86%8D%EC%9E%90%EC%97%B0%EC%82%AC%EB%B0%95%EB%AC%BC%EA%B4%80_%EC%9E%85%EA%B5%AC.jpg) | CC |
 | hotel.jpg | [징크호텔 공식 홈페이지](http://hotelzinc.co.kr/page/about02) 전경 안내 | 호텔 안내 사진 |
