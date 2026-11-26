@@ -99,15 +99,15 @@
         .esg-stat-label { line-height: 1.25; word-break: keep-all; }
         @media screen { #print-area { display: none !important; } }
         @media print {
-            @page { size: A4 portrait; margin: 10mm 9mm; }
+            /* 투어메이커 표준 일정표양식 인쇄 품질 */
+            @page { size: A4 portrait; margin: 12mm 10mm; }
             * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
             html, body {
                 background: #fff !important; color: #1e293b !important;
                 margin: 0 !important; padding: 0 !important; width: 100% !important;
-                font-size: 10pt; height: auto !important; overflow: visible !important;
+                font-size: 13.5px; line-height: 1.5; height: auto !important; overflow: visible !important;
             }
             a[href]:after { content: none !important; }
-            /* 화면 UI 전부 숨기고 인쇄용 2페이지만 출력 */
             body > *:not(#print-area) { display: none !important; }
             .print-hidden, .print\:hidden, .no-print,
             header, footer, section, nav, #map, #map-section, #tm-inquiry-modal,
@@ -120,64 +120,87 @@
             .print-page-container {
                 width: 100%; margin: 0; padding: 0;
                 page-break-after: always; break-after: page;
+                display: block;
             }
             .print-pack.print-page-2 {
                 width: 100%; margin: 0; padding: 0;
                 page-break-before: auto; break-before: auto;
                 page-break-after: avoid; break-after: avoid;
             }
-            .print-header { display: flex; justify-content: space-between; align-items: flex-end; border-bottom: 2px solid #004098; padding-bottom: 6px; margin-bottom: 10px; }
-            .print-header .logo img { height: 28px; object-fit: contain; }
-            .print-header .doc-info { text-align: right; font-size: 10.5px; color: #475569; }
-            .print-title-section { text-align: center; margin-bottom: 10px; }
-            .print-title-section h1 { font-size: 18px; font-weight: 700; color: #0f172a; letter-spacing: -0.5px; margin: 0; }
-            .print-overview-slim {
-                display: flex; justify-content: space-between; gap: 6px;
-                background-color: #f8fafc; border: 1px solid #94a3b8; border-radius: 6px;
-                padding: 6px 12px; margin-bottom: 10px; font-size: 11.5px; word-break: keep-all;
+            .print-header {
+                display: flex; justify-content: space-between; align-items: flex-end;
+                border-bottom: 2px solid #004098; padding-bottom: 12px; margin-bottom: 18px;
             }
-            .print-overview-item { display: flex; gap: 6px; align-items: flex-start; min-width: 0; }
+            .print-header .logo img { height: 42px; object-fit: contain; }
+            .print-header .doc-info { text-align: right; font-size: 13px; color: #475569; }
+            .print-title-section { text-align: center; margin-bottom: 16px; }
+            .print-title-section h1 {
+                font-size: 24px; font-weight: 700; color: #0f172a;
+                letter-spacing: -0.5px; margin: 0 0 4px 0;
+            }
+            .print-overview-slim {
+                display: flex; justify-content: space-between; gap: 8px;
+                background-color: #f8fafc !important; border: 1px solid #94a3b8; border-radius: 6px;
+                padding: 12px 18px; margin-bottom: 16px; font-size: 14px; word-break: keep-all;
+            }
+            .print-overview-item { display: flex; gap: 8px; align-items: flex-start; min-width: 0; }
             .print-overview-slim .label { font-weight: 700; color: #004098; white-space: nowrap; flex-shrink: 0; }
-            .print-overview-slim .value { line-height: 1.4; }
+            .print-overview-slim .value { line-height: 1.4; color: #1e293b; }
             .print-nowrap { white-space: nowrap; }
-            .print-table { width: 100%; border-collapse: collapse; margin-bottom: 8px; font-size: 11px; table-layout: fixed; border: 2px solid #1e293b; }
-            .print-table th, .print-table td { border: 1px solid #1e293b; padding: 5px 7px; vertical-align: top; page-break-inside: avoid; word-break: keep-all; }
-            .print-table th { background-color: #f8fafc !important; color: #1e293b; font-weight: 700; text-align: center; font-size: 11.5px; border-bottom: 2px solid #1e293b; }
+            .print-table {
+                width: 100%; border-collapse: collapse; margin-bottom: 14px;
+                font-size: 13.5px; table-layout: fixed; border: 2px solid #1e293b;
+            }
+            .print-table th, .print-table td {
+                border: 1px solid #1e293b; padding: 12px 14px; vertical-align: top;
+                page-break-inside: avoid; word-break: keep-all;
+            }
+            .print-table th {
+                background-color: #f8fafc !important; color: #1e293b; font-weight: 700;
+                text-align: center; font-size: 14.5px; padding: 12px;
+            }
             .print-table tr { page-break-inside: avoid; }
-            .print-col-date { width: 10%; text-align: center; font-weight: 700; vertical-align: middle; background-color: #f8fafc; }
+            .print-col-date { width: 14%; text-align: center; font-weight: 700; vertical-align: middle; background-color: #f8fafc !important; }
             .print-col-desc { width: 70%; }
-            .print-col-meal { width: 20%; text-align: center; vertical-align: middle; }
+            .print-col-meal { width: 16%; text-align: center; vertical-align: middle; }
             .print-day-divider td { border-top: 2px solid #1e293b !important; }
-            .print-time-flow { margin-bottom: 2px; font-weight: 500; font-size: 11px; }
-            .print-time-tag { display: inline-block; color: #004098; font-weight: 700; margin-right: 4px; }
+            .print-time-flow { margin-bottom: 8px; font-weight: 500; font-size: 13.5px; }
+            .print-time-tag { display: inline-block; color: #004098; font-weight: 700; margin-right: 5px; }
             .print-highlight { font-weight: 700; color: #0f172a; }
-            .print-desc-list { list-style: none; margin: 2px 0 4px 0; padding-left: 4px; font-size: 11px; }
-            .print-desc-list li { position: relative; padding-left: 11px; margin-bottom: 2px; line-height: 1.35; }
-            .print-desc-list li::before { content: '■'; font-size: 7px; position: absolute; left: 0; top: 3px; color: #004098; }
-            .print-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 4px 0 3px 0; }
-            .print-hotel-info { font-size: 11px; color: #0f172a; font-weight: 700; }
-            .print-meal-wrapper { display: flex; flex-direction: column; gap: 5px; justify-content: center; height: 100%; text-align: left; padding-left: 2px; }
-            .print-meal-simple { display: flex; align-items: flex-start; line-height: 1.35; font-size: 10.5px; gap: 2px; }
-            .print-meal-simple strong { color: #004098; margin-right: 2px; width: 16px; flex-shrink: 0; }
-            .print-meal-menu { display: block; min-width: 0; flex: 1; word-break: keep-all; overflow-wrap: break-word; white-space: normal; }
-            .print-meal-sub { display: block; font-size: 10px; margin-top: 1px; color: #475569; }
-            .print-remarks { font-size: 10px; color: #475569; text-align: right; font-weight: 500; margin-bottom: 6px; }
-            .print-contacts { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 14px; padding: 6px 8px; background: #f8fafc !important; border: 1px solid #cbd5e1 !important; border-radius: 4px; font-size: 9px; margin-bottom: 6px; }
-            .print-contacts .pc-role { font-weight: 700; color: #004098; margin-right: 3px; }
-            .print-footer-box { margin-top: 6px; padding-top: 6px; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: flex-end; }
-            .print-brand-link { font-size: 10px; color: #6c757d; }
-            .print-manager-info { text-align: right; border-left: 3px solid #004098; padding-left: 8px; }
-            .print-manager-info .names { color: #0f172a; font-weight: 700; font-size: 11.5px; }
-            .print-pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-            .print-pack-card { border: 1.5px solid #1e293b; border-radius: 6px; padding: 12px 14px; background: #fff !important; page-break-inside: avoid; }
-            .print-pack-card h2 { font-size: 13.5px; font-weight: 800; color: #004098; margin: 0 0 8px 0; }
-            .print-check-item { display: flex; align-items: flex-start; gap: 8px; font-size: 12.5px; font-weight: 600; line-height: 1.45; margin-bottom: 5px; }
-            .print-check-box { width: 13px; height: 13px; border: 1.5px solid #004098; border-radius: 2px; flex-shrink: 0; margin-top: 3px; }
-            .print-qr-box { display: flex; align-items: center; gap: 18px; padding: 16px 18px; border: 1.5px solid #1e293b; border-radius: 6px; background: #f8fafc !important; page-break-inside: avoid; }
+            .print-desc-list { list-style: none; margin: 8px 0; padding-left: 5px; font-size: 13.5px; }
+            .print-desc-list li { position: relative; padding-left: 14px; margin-bottom: 6px; line-height: 1.6; }
+            .print-desc-list li::before { content: '■'; font-size: 8px; position: absolute; left: 0; top: 5px; color: #004098; }
+            .print-hotel-divider { border: 0; border-top: 1px dashed #94a3b8; margin: 12px 0 8px 0; }
+            .print-hotel-info { font-size: 14px; color: #0f172a; }
+            .print-hotel-info i { color: #004098; margin-right: 6px; }
+            .print-hotel-info strong { font-weight: 700; }
+            .print-meal-wrapper {
+                display: flex; flex-direction: column; gap: 12px; justify-content: center;
+                height: 100%; text-align: left; padding-left: 4px;
+            }
+            .print-meal-simple { display: flex; align-items: flex-start; line-height: 1.4; font-size: 14px; color: #1e293b; }
+            .print-meal-simple strong { color: #004098; margin-right: 4px; width: 22px; flex-shrink: 0; }
+            .print-meal-menu { display: flex; flex-direction: column; min-width: 0; flex: 1; word-break: keep-all; }
+            .print-meal-sub { display: block; font-size: 13px; margin-top: 2px; color: #475569; }
+            .print-remarks { font-size: 12.5px; color: #64748b; text-align: right; font-weight: 500; margin-bottom: 16px; line-height: 1.55; }
+            .print-contacts { display: none !important; }
+            .print-footer-box {
+                margin-top: 16px; padding-top: 16px; border-top: 1px solid #e2e8f0;
+                display: flex; justify-content: space-between; align-items: flex-end;
+            }
+            .print-brand-link { font-size: 12px; color: #6c757d; }
+            .print-manager-info { text-align: right; border-left: 3px solid #004098; padding-left: 15px; }
+            .print-manager-info .names { color: #0f172a; font-weight: 700; font-size: 15px; }
+            .print-pack-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+            .print-pack-card { border: 1.5px solid #1e293b; border-radius: 6px; padding: 16px 18px; background: #fff !important; page-break-inside: avoid; }
+            .print-pack-card h2 { font-size: 15px; font-weight: 800; color: #004098; margin: 0 0 10px 0; }
+            .print-check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; font-weight: 600; line-height: 1.5; margin-bottom: 8px; }
+            .print-check-box { width: 14px; height: 14px; border: 1.5px solid #004098; border-radius: 2px; flex-shrink: 0; margin-top: 3px; }
+            .print-qr-box { display: flex; align-items: center; gap: 20px; padding: 18px 20px; border: 1.5px solid #1e293b; border-radius: 6px; background: #f8fafc !important; page-break-inside: avoid; }
             .print-qr-box img { width: 32mm; height: 32mm; border: 1px solid #1e293b; background: #fff; flex-shrink: 0; }
             .print-qr-box strong { color: #004098; font-size: 16px; display: block; margin-bottom: 6px; }
-            .print-qr-box p { font-size: 13px; line-height: 1.55; font-weight: 600; margin: 0 0 6px 0; }
-            .print-qr-url { color: #475569; font-size: 12px; font-weight: 500; }
+            .print-qr-box p { font-size: 13.5px; line-height: 1.55; font-weight: 600; margin: 0 0 6px 0; }
+            .print-qr-url { color: #475569; font-size: 13px; font-weight: 500; }
         }
     </style>
 </head>
@@ -871,22 +894,22 @@
                 <thead>
                     <tr>
                         <th class="print-col-date">일자</th>
-                        <th class="print-col-desc">상세일정 및 체험내용</th>
+                        <th class="print-col-desc">상세 일정 및 체험 내용</th>
                         <th class="print-col-meal">식사</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="print-day-divider">
-                        <td class="print-col-date"><strong class="print-nowrap">1일차</strong><br><span class="print-nowrap">12/5 (토)</span></td>
+                        <td class="print-col-date"><strong>1일차</strong><br>12/5 (토)</td>
                         <td class="print-col-desc">
                             <div class="print-time-flow"><span class="print-time-tag">오후</span> <span class="print-highlight">사북청소년장학센터</span> 출발 · 원주공항 수속</div>
-                            <div class="print-time-flow"><span class="print-time-tag">LJ7369</span> 16:20 원주 출발 → 17:35 제주 도착 · HA483W · 미니버스(카운티)</div>
+                            <div class="print-time-flow"><span class="print-time-tag">16:20</span> 원주 출발 (LJ7369 · HA483W) → 17:35 제주 도착</div>
                             <ul class="print-desc-list">
-                                <li>17:40 석식 <span class="print-highlight">화목원정식</span></li>
-                                <li>18:40 숙소 체크인</li>
+                                <li>[미니버스·카운티] 공항에서 이동 후 석식 <span class="print-highlight">화목원정식</span> (17:40–18:30)</li>
+                                <li>18:40 숙소 체크인 후 자유시간</li>
                             </ul>
                             <hr class="print-hotel-divider">
-                            <div class="print-hotel-info">🏨 서귀포 징크호텔 · 3박 · 조식 포함</div>
+                            <div class="print-hotel-info"><i class="fa-solid fa-bed"></i> <strong>호텔명 : 서귀포 징크호텔 (3박 · 조식 포함)</strong></div>
                         </td>
                         <td class="print-col-meal">
                             <div class="print-meal-wrapper">
@@ -897,61 +920,65 @@
                         </td>
                     </tr>
                     <tr class="print-day-divider">
-                        <td class="print-col-date"><strong class="print-nowrap">2일차</strong><br><span class="print-nowrap">12/6 (일)</span></td>
+                        <td class="print-col-date"><strong>2일차</strong><br>12/6 (일)</td>
                         <td class="print-col-desc">
-                            <div class="print-time-flow"><span class="print-time-tag">09:00</span> 조식 후 출발</div>
+                            <div class="print-time-flow"><span class="print-time-tag">09:00</span> 조식 후 숙소 출발 (대형버스)</div>
                             <ul class="print-desc-list">
-                                <li>09:30 <span class="print-highlight">제주 4·3평화공원</span></li>
-                                <li>11:10 <span class="print-highlight">다이나믹메이즈</span> (양말)</li>
-                                <li>중식 <span class="print-highlight">토종닭샤브샤브</span></li>
-                                <li>14:10 <span class="print-highlight">휴애리자연생활공원</span> (동백)</li>
-                                <li>15:30 <span class="print-highlight">감귤 따기</span> (시식, 귤 1kg)</li>
-                                <li>17:20 석식 <span class="print-highlight">흑돼지구이</span> · 18:40 숙소</li>
+                                <li>09:30–10:40 <span class="print-highlight">제주 4·3평화공원</span></li>
+                                <li>11:10–12:30 <span class="print-highlight">다이나믹메이즈</span> (양말 착용)</li>
+                                <li>12:50–13:40 중식 <span class="print-highlight">토종닭샤브샤브</span></li>
+                                <li>14:10–15:20 <span class="print-highlight">휴애리자연생활공원</span> (동백)</li>
+                                <li>15:30–16:20 <span class="print-highlight">감귤 따기</span> (시식 · 귤 1kg)</li>
+                                <li>17:20–18:30 석식 <span class="print-highlight">흑돼지구이</span> · 18:40 숙소 도착</li>
                             </ul>
+                            <hr class="print-hotel-divider">
+                            <div class="print-hotel-info"><i class="fa-solid fa-bed"></i> <strong>호텔명 : 서귀포 징크호텔</strong></div>
                         </td>
                         <td class="print-col-meal">
                             <div class="print-meal-wrapper">
                                 <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">호텔식</div></div>
-                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">토종닭<br>샤브</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">토종닭샤브<span class="print-meal-sub">(4테이블)</span></div></div>
                                 <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">흑돼지구이</div></div>
                             </div>
                         </td>
                     </tr>
                     <tr class="print-day-divider">
-                        <td class="print-col-date"><strong class="print-nowrap">3일차</strong><br><span class="print-nowrap">12/7 (월)</span></td>
+                        <td class="print-col-date"><strong>3일차</strong><br>12/7 (월)</td>
                         <td class="print-col-desc">
-                            <div class="print-time-flow"><span class="print-time-tag">08:30</span> 조식 후 출발</div>
+                            <div class="print-time-flow"><span class="print-time-tag">08:30</span> 조식 후 숙소 출발 (대형버스)</div>
                             <ul class="print-desc-list">
-                                <li>09:10 <span class="print-highlight">제주항공우주박물관</span></li>
-                                <li>11:30 <span class="print-highlight">알뜨르 비행장 격납고</span></li>
-                                <li>중식 <span class="print-highlight">애슐리퀸즈 뷔페</span></li>
-                                <li>14:20 <span class="print-highlight">워터월드 제주</span></li>
+                                <li>09:10–11:00 <span class="print-highlight">제주항공우주박물관</span></li>
+                                <li>11:30–12:20 <span class="print-highlight">알뜨르 비행장 격납고</span></li>
+                                <li>13:00–14:10 중식 <span class="print-highlight">애슐리퀸즈 뷔페</span></li>
+                                <li>14:20–16:00 <span class="print-highlight">워터월드 제주</span></li>
                                 <li>17:00–19:00 <span class="print-highlight">서귀포 올레시장</span> 자유식 · 19:10 숙소</li>
                             </ul>
+                            <hr class="print-hotel-divider">
+                            <div class="print-hotel-info"><i class="fa-solid fa-bed"></i> <strong>호텔명 : 서귀포 징크호텔</strong></div>
                         </td>
                         <td class="print-col-meal">
                             <div class="print-meal-wrapper">
                                 <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">숙소식</div></div>
-                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">애슐리<br>퀸즈</div></div>
-                                <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">자유식</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">애슐리퀸즈<span class="print-meal-sub">(뷔페)</span></div></div>
+                                <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">자유식<span class="print-meal-sub">(올레시장)</span></div></div>
                             </div>
                         </td>
                     </tr>
                     <tr class="print-day-divider">
-                        <td class="print-col-date"><strong class="print-nowrap">4일차</strong><br><span class="print-nowrap">12/8 (화)</span></td>
+                        <td class="print-col-date"><strong>4일차</strong><br>12/8 (화)</td>
                         <td class="print-col-desc">
-                            <div class="print-time-flow"><span class="print-time-tag">09:00</span> 조식 후 출발</div>
+                            <div class="print-time-flow"><span class="print-time-tag">09:00</span> 조식 후 체크아웃 · 숙소 출발 (대형버스)</div>
                             <ul class="print-desc-list">
-                                <li>10:20 <span class="print-highlight">제주민속자연사박물관</span></li>
-                                <li>중식 <span class="print-highlight">제육볶음 · 고등어구이</span></li>
-                                <li>13:00 제주공항 수속</li>
+                                <li>10:20–11:40 <span class="print-highlight">제주민속자연사박물관</span></li>
+                                <li>11:50–12:40 중식 <span class="print-highlight">제육볶음 + 고등어구이</span></li>
+                                <li>13:00 제주공항 도착 및 탑승 수속</li>
                             </ul>
-                            <div class="print-time-flow"><span class="print-time-tag">LJ7368</span> 14:20 제주 출발 → 15:35 원주 도착 · 사북 해산</div>
+                            <div class="print-time-flow" style="margin-top: 10px;"><span class="print-time-tag">14:20</span> 제주 출발 (LJ7368) → 15:35 원주 도착 · 사북 해산</div>
                         </td>
                         <td class="print-col-meal">
                             <div class="print-meal-wrapper">
                                 <div class="print-meal-simple"><strong>조:</strong><div class="print-meal-menu">숙소식</div></div>
-                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">제육·<br>고등어</div></div>
+                                <div class="print-meal-simple"><strong>중:</strong><div class="print-meal-menu">제육볶음<span class="print-meal-sub">+고등어구이</span></div></div>
                                 <div class="print-meal-simple"><strong>석:</strong><div class="print-meal-menu">-</div></div>
                             </div>
                         </td>
@@ -959,15 +986,9 @@
                 </tbody>
             </table>
             <div class="print-remarks">
-                ※ 일정은 항공과 현지 사정에 따라 달라질 수 있습니다. 가는 편 LJ7369, 오는 편 LJ7368.<br>
-                ※ 학생은 발급 3개월 이내 주민등록등본, 선생님은 신분증 원본. 기사님이 안내합니다.<br>
-                ※ 1일차 공항–숙소는 미니버스(카운티), 2–4일차는 대형버스.<br>
-                ※ 온라인 체크인은 출발 24시간 전 오픈, 무료 좌석입니다. 보조배터리는 위탁 금지·기내 선반 금지·직접 휴대.
-            </div>
-            <div class="print-contacts">
-                <span><span class="pc-role">투어메이커</span> 이재명 010-9443-7881 · 조혁 010-4249-4026</span>
-                <span><span class="pc-role">사무실</span> 033-562-2551</span>
-                <span><span class="pc-role">현지</span> 기사님이 안내 · 선생님과 전용 차량</span>
+                ※ 상기 일정은 항공기 연발착 및 현지 사정에 따라 다소 변경될 수 있습니다.<br>
+                ※ 학생은 발급 3개월 이내 주민등록등본, 선생님은 신분증 원본을 지참해 주세요.<br>
+                ※ 1일차 공항–숙소는 미니버스(카운티), 2–4일차는 대형버스입니다.
             </div>
             <div class="print-footer-box">
                 <div class="print-brand-link">[System Powered by TOURMAKER]</div>
